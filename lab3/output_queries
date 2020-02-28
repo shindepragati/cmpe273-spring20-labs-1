@@ -1,0 +1,40 @@
+query AA{
+createStudent(name:"pragati"){
+  name
+  id
+}
+}
+query BB{
+getStudentDetails(id:1582880182){
+  name
+  id
+}
+}
+
+query CC{
+createClass(name:"cmpe272"){
+  id
+  name
+}
+}
+
+query dd{
+getClassDetails(id:1582880232){
+  id
+  name
+}
+}
+query ee{
+addStudenttoClass(id:1582880182,classId:1582880232){
+  id
+  name
+  student{
+    id
+    name
+  }
+}
+}
+
+
+
+
