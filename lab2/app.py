@@ -84,18 +84,25 @@ def fetch_classes_details(id):
     return response 
 
 # Patch two request - 1. create id for the class name 2. get the specificd student details from DB['students'] and add to the list 'student' in DB['classes']
-@app.route('/classes/<s_id>',methods=['PATCH'])
-def add_student_to_class(s_id):
+@app.route('/classes/<s_id>/<c_name>',methods=['PATCH'])
+def add_student_to_class(s_id,c_name):
     stud_data = DB['students']
     class_data = DB['classes']
+    for i in class_data.keys():
+        if class_data[i]==c_name:
+            temp_class=class_data[i]
+            temp_c_id=i
+
     for i in stud_data.keys():
         if float(s_id)==i:
-            temp=stud_data[i]
-            did=time.time()
-            name="CMPE-273"
-            class_data['student'].append({s_id:temp})
-            DB['classes'].update({did : name})
-            str=jsonify(id=did,name=name,student=class_data['student'])
+            temp_stud_id=stud_data[i]
+            class_id=temp_c_id
+           # name="CMPE-273"
+            class_name=temp_class
+            print("**********class_name",class_name)
+            class_data['student'].append({s_id:temp_stud_id})
+            DB['classes'].update({class_id : class_name})
+            str=jsonify(id=class_id,name=class_name,student=class_data['student'])
             break
         else:
             str="classes Details Not Found"  
