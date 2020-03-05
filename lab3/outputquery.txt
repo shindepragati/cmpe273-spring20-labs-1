@@ -1,0 +1,43 @@
+# Write your query or mutation here
+query AA{
+createStudent(name:"pragati"){
+  name
+  id
+}
+}
+query BB{
+getStudentDetails(id:1583401580){
+  name
+  id
+}
+}
+
+query CC{
+createClass(name:"cmpe272"){
+  id
+  name
+}
+}
+
+query dd{
+getClassDetails(id:1583401593){
+  id
+  name
+}
+}
+query ee{
+addStudenttoClass(id:1583404618,classId:1583404624){
+  id
+  name
+  
+  student{
+    id
+    name
+  }
+}
+}
+
+
+
+
+

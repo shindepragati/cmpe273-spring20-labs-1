@@ -15,6 +15,8 @@ type_defs = load_schema_from_path('schema.graphql')
 query = QueryType()
 mutation = MutationType()
 
+stud_name=""
+stud_id=0
 
 @query.field("hello")
 def hello(_, info):
@@ -89,20 +91,28 @@ def getClassDetails(_, info, id):
 
 @query.field("addStudenttoClass")
 @mutation.field("addStudenttoClass")
-def addStudenttoClass(_, info, s_id,class_id):
+def addStudenttoClass(_, info, id, classId):
     stud_data = DB['students']
     class_data = DB['classes']
-    for i in stud_data.keys():
-        if int(s_id)==i:
-            temp=stud_data[i]
-            did=class_id
-            name="CMPE272"
-            class_data['student'].append({s_id:temp})
-            DB['classes'].update({did : name})
-            classes={"id":did,"name":name,"student":class_data['student']}
-            break
+   
+    for j in class_data.keys():
+        if int(classId)==j:
+            temp_class=class_data[j]
+            temp_c_id=j
+            for i in stud_data.keys():
+                print(id,"****i",i)
+                if int(id)==i:
+                    name=stud_data[i]
+                    sid=i
+                    print(name,"******",sid)
+                    class_data['student'].append({"id":sid,"name":name})
+                    DB['classes'].update({temp_c_id : temp_class})
+                    print(DB)
+                    classes={"id":classId,"name":temp_class,"student":class_data['student']}
+                    break
         
     return classes 
+
 
 schema = make_executable_schema(type_defs, [query, mutation])
 
