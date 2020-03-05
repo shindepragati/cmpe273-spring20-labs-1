@@ -1,0 +1,15 @@
+1.add student 
+  http://127.0.0.1:5000/students
+        {
+	    "name" : "pragati"
+        }
+
+2.add class
+    http://127.0.0.1:5000/classes
+    {
+	"name" : "CMPE273"
+}
+
+3.Patch - add student to class
+http://127.0.0.1:5000/classes/1583405271.971958/1583405275.0258188
+
